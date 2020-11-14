@@ -54,7 +54,7 @@ getDesccR cid = do
 -- select * from Calda order by preco desc
 getListacR :: Handler Html 
 getListacR = do 
-    -- caldas :: [Entity CaldaId Produto]
+    -- caldas :: [Entity CaldaId Calda]
     caldas <- runDB $ selectList [] [Desc CaldaPreco]
     defaultLayout [whamlet|
         <table>
