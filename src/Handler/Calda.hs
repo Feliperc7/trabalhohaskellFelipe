@@ -86,8 +86,8 @@ getListacR = do
                                 <input type="submit" value="X">
     |]
 
-getUpdCaldaR :: CaldaId -> Handler Html
-getUpdCaldaR cid = do
+getUpdCaldR :: CaldaId -> Handler Html
+getUpdCaldR cid = do
     antigo <- runDB $ get404 cid 
     auxCaldaR (UpdCaldR cid) (Just antigo)
 
