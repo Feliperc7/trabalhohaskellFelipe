@@ -16,7 +16,7 @@ getHomeR = do
             <h1>
                 SISTEMA DE PRODUTOS
         
-            <img src=@{StaticR imgs_sorvete_jpg}>
+            <img src=@{StaticR img_sorvete_jpg}>
         
             <ul>
                 <li>
@@ -29,7 +29,7 @@ getHomeR = do
 
                 <li>
 
-                    <img src=@{StaticR imgs_calda_jpg}>
+                    <img src=@{StaticR img_calda_jpg}>
 
                     <a href=@{CaldaR}>
                          <br>CADASTRO DE CALDAS<br>
@@ -40,7 +40,7 @@ getHomeR = do
 
                 <li>
 
-                    <img src=@{StaticR imgs_acompanhamento_jpg}>
+                    <img src=@{StaticR img_acompanhamento_jpg}>
 
                     <a href=@{AcompanhamentoR}>
                          <br>CADASTRO DE ACOMPANHAMENTOS<br>
