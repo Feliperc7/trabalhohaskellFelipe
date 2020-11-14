@@ -58,8 +58,9 @@ getListasR = do
     -- sorvetes :: [Entity SorveteId Sorvete]
     sorvetes <- runDB $ selectList [] [Desc SorvetePreco]
     defaultLayout [whamlet|
-
+         
         <table border="1">
+        <body style="background-color:palegoldenrod;">
         <caption> <h1> SORVETES CADASTRADOS </caption>
             <thead>
                 <tr>
