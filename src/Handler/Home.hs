@@ -13,6 +13,7 @@ getHomeR = do
     defaultLayout $ do
         addStylesheet (StaticR css_bootstrap_css)
         [whamlet|
+            <body style="background-color:powderblue;">
             <h1>
                 SISTEMA DE PRODUTOS
         
