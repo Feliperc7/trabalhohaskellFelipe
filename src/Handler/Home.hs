@@ -15,7 +15,7 @@ getHomeR = do
         [whamlet|
             <body style="background-color:powderblue;">
             <h1>
-                SISTEMA DE PRODUTOS
+                SIISTEMA DA SORVETERIA
         
             <img src=@{StaticR img_sorvete_jpg}>
         
