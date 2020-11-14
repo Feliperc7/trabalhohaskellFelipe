@@ -58,6 +58,7 @@ getListacR = do
     caldas <- runDB $ selectList [] [Desc CaldaPreco]
     defaultLayout [whamlet|
         <table>
+        <body style="background-color:aquamarine;">
             <thead>
                 <tr>
                     <th>
