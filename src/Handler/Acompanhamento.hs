@@ -58,6 +58,7 @@ getListaaR = do
     acompanhamentos <- runDB $ selectList [] [Desc AcompanhamentoPreco]
     defaultLayout [whamlet|
         <table>
+        <body style="background-color:lightgreen;">
             <thead>
                 <tr>
                     <th>
