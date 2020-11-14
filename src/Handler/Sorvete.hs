@@ -44,7 +44,8 @@ getDescsR :: SorveteId -> Handler Html
 getDescsR sid = do
     sorvete <- runDB $ get404 sid
     defaultLayout [whamlet|
-        <h1>
+         
+        <h2>
             Nome: #{sorveteNome sorvete}
         
         <h2>
@@ -57,7 +58,9 @@ getListasR = do
     -- sorvetes :: [Entity ProdutoId Produto]
     sorvetes <- runDB $ selectList [] [Desc SorvetePreco]
     defaultLayout [whamlet|
-        <table>
+
+        <table border="1">
+        <caption> <h1> SORVETES CADASTRADOS </caption>
             <thead>
                 <tr>
                     <th>
