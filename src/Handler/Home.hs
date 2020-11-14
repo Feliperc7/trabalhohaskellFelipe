@@ -15,18 +15,18 @@ getHomeR = do
         [whamlet|
             <body style="background-color:powderblue;">
             <h1>
-                SIISTEMA DA SORVETERIA
-        
+                <center>SISTEMA DA SORVETERIA</center>
+            
             <img src=@{StaticR img_sorvete_jpg}>
         
             <ul>
-                <li><a href=@{SorveteR}>
-                         <br>CADASTRO DE SORVETES<br>
+            <br><button onclick="a href=@{SorveteR}"><span style="color:black;font-weight:bold">CADASTRO DE SORVETES</span></button>
+                <input type="submit">
                         
-                <li><button onclick="a href=@{ListasR}"><br>LISTA DOS SORVETES<br></button>
-                     <input type="submit">
+                <button onclick="a href=@{ListasR}"><span style="color:black;font-weight:bold">LISTA DOS SORVETES</span></button>
+                    
 
-                     <img src=@{StaticR img_calda_jpg}>
+                <b<img src=@{StaticR img_calda_jpg}>
 
                 <li><a href=@{CaldaR}>
                          <br>CADASTRO DE CALDAS<br>
@@ -41,5 +41,9 @@ getHomeR = do
                         
                 <li><a href=@{ListaaR}>
                          <br>LISTA DOS ACOMPANHAMENTOS<br>
+               
+                ul li {
+                         display: inline-block;
+                      }
 
         |]
