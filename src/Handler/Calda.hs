@@ -78,11 +78,11 @@ getListacR = do
                             #{caldaPreco calda}
                         
                         <td>
-                            <a href=@{UpdSorvR cid}>
+                            <a href=@{UpdCaldR cid}>
                                 Editar
                         
                         <td>
-                            <form action=@{DelSorvR cid} method=post>
+                            <form action=@{DelCaldR cid} method=post>
                                 <input type="submit" value="X">
     |]
 
