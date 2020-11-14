@@ -23,10 +23,10 @@ getHomeR = do
                 <li><a href=@{SorveteR}>
                          <br>CADASTRO DE SORVETES<br>
                         
-                <li><a href=@{ListasR}>
-                         <br>LISTA DOS SORVETES<br>
+                <li><button onclick="a href=@{ListasR}"><br>LISTA DOS SORVETES<br></button>
+                     <input type="submit">
 
-                    <img src=@{StaticR img_calda_jpg}>
+                     <img src=@{StaticR img_calda_jpg}>
 
                 <li><a href=@{CaldaR}>
                          <br>CADASTRO DE CALDAS<br>
