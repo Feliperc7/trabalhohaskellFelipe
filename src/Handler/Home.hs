@@ -20,16 +20,17 @@ getHomeR = do
             <img src=@{StaticR img_sorvete_jpg}>
         
             <ul>
-            <br><button onclick="a href=@{SorveteR}"><span style="color:black;font-weight:bold">CADASTRO DE SORVETES
+            <br><button onclick="<a href=@{SorveteR}>">CADASTRO DE SORVETES</button>
                 
                         
-            <br><button onclick="a href=@{ListasR}"><span style="color:black;font-weight:bold">LISTA DOS SORVETES</span></button>
-                    
+            <br><a href="@{ListasR}">
+                <input type="button" value="LISTA DOS SORVETES" style="color:black;font-weight:bold">
+      
 
                 <br><img src=@{StaticR img_calda_jpg}>
 
-                <br><a href=@{CaldaR}>
-                         <br>CADASTRO DE CALDAS<br>
+                <br><button onclick="<a href=@{CaldaR}>"><span style="color:black;font-                          weight:bold"></span></button>CADASTRO DE CALDAS<br>
+
                         
                 <br><a href=@{ListacR}>
                          <br>LISTA DAS CALDAS<br>
