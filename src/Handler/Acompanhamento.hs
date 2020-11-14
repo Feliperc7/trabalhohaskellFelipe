@@ -27,12 +27,12 @@ auxAcompR rt mp = do
             <input type="submit" value="Cadastrar acompanhamento para o sorvete">
     |]
 
-getAcompR :: Handler Html
-getAcompR = auxAcompR AcompR Nothing
+getAcompanhamentoR :: Handler Html
+getAcompanhamentoR = auxAcompR AcompanhamentoR Nothing
 
-postAcompR :: Handler Html
-postAcompR = do
-    ((res,_),_) <- runFormPost (formAcomp Nothing)
+postAcompanhamentoR :: Handler Html
+postAcompanhamentoR = do
+    ((res,_),_) <- runFormPost (formAcompanhamento Nothing)
     case res of 
          FormSuccess acompanhamento -> do
              aid <- runDB (insert acompanhamento)
