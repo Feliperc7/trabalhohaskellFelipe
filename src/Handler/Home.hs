@@ -20,30 +20,27 @@ getHomeR = do
             <img src=@{StaticR img_sorvete_jpg}>
         
             <ul>
-            <br><button onclick="a href=@{SorveteR}"><span style="color:black;font-weight:bold">CADASTRO DE SORVETES</span></button>
-                <input type="submit">
+            <br><button onclick="a href=@{SorveteR}"><span style="color:black;font-weight:bold">CADASTRO DE SORVETES
+                
                         
-                <button onclick="a href=@{ListasR}"><span style="color:black;font-weight:bold">LISTA DOS SORVETES</span></button>
+            <br><button onclick="a href=@{ListasR}"><span style="color:black;font-weight:bold">LISTA DOS SORVETES</span></button>
                     
 
-                <b<img src=@{StaticR img_calda_jpg}>
+                <br><img src=@{StaticR img_calda_jpg}>
 
-                <li><a href=@{CaldaR}>
+                <br><a href=@{CaldaR}>
                          <br>CADASTRO DE CALDAS<br>
                         
-                <li><a href=@{ListacR}>
+                <br><a href=@{ListacR}>
                          <br>LISTA DAS CALDAS<br>
                    
-                    <img src=@{StaticR img_acompanhamento_jpg}>
+                <br><img src=@{StaticR img_acompanhamento_jpg}>
 
-                <li><a href=@{AcompanhamentoR}>
-                         <br>CADASTRO DE ACOMPANHAMENTOS<br>
+                <br><a href=@{AcompanhamentoR}>
+                         CADASTRO DE ACOMPANHAMENTOS
                         
-                <li><a href=@{ListaaR}>
-                         <br>LISTA DOS ACOMPANHAMENTOS<br>
+                <br><a href=@{ListaaR}>
+                         LISTA DOS ACOMPANHAMENTOS
                
-                ul li {
-                         display: inline-block;
-                      }
-
+              
         |]
