@@ -1,0 +1,21 @@
+/static StaticR Static appStatic
+
+/favicon.ico FaviconR GET
+/robots.txt RobotsR GET
+
+/                                           HomeR             GET 
+/sorvete                                    SorveteR          GET POST
+/sorvete/#SorveteId/desc                    DescsR            GET
+/sorvetes                                   ListasR           GET
+/sorvete/#SorveteId/modificar               UpdSorvR          GET POST
+/sorvete/#SorveteId/del                     DelSorvR          POST
+/calda                                      CaldaR            GET POST
+/calda/#CaldaId/desc                        DesccR            GET
+/caldas                                     ListacR           GET
+/calda/#CaldaId/modificar                   UpdCaldR          GET POST
+/calda/#CaldaId/del                         DelCaldR          POST
+/acompanhamento                             AcompanhamentoR   GET POST
+/acompanhamento/#AcompanhamentoId/desc      DescaR            GET
+/acompanhamentos                            ListaaR           GET
+/acompanhamento/#AcompanhamentoId/modificar UpdAcompR         GET POST
+/acompanhamento/#AcompanhamentoId/del       DelAcompR         POST

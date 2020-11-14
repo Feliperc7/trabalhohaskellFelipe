@@ -1,0 +1,14 @@
+Sorvete
+    nome  Text
+    preco Double 
+    deriving Show
+
+Calda
+    nome  Text
+    preco Double 
+    deriving Show
+
+Acompanhamento
+    nome  Text
+    preco Double 
+    deriving Show
