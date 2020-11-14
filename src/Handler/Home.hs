@@ -20,28 +20,26 @@ getHomeR = do
             <img src=@{StaticR img_sorvete_jpg}>
         
             <ul>
-            <br><button onclick="<a href=@{SorveteR}>">CADASTRO DE SORVETES</button>
-                
+                <br><a href=@{SorveteR}">
+                <input type="button" value="CADASTRO DE SORVETES" style="color:black;font-weight:bold"><br>              
                         
-            <br><a href="@{ListasR}">
-                <input type="button" value="LISTA DOS SORVETES" style="color:black;font-weight:bold">
+                <br><a href="@{ListasR}">
+                <input type="button" value="LISTA DOS SORVETES" style="color:black;font-weight:bold"><br>
       
-
                 <br><img src=@{StaticR img_calda_jpg}>
 
-                <br><button onclick="<a href=@{CaldaR}>"><span style="color:black;font-                          weight:bold"></span></button>CADASTRO DE CALDAS<br>
+                <br><a href=@{CaldaR}">
+                <input type="button" value="CADASTRO DE CALDAS" style="color:red;font-weight:bold"><br> 
 
-                        
-                <br><a href=@{ListacR}>
-                         <br>LISTA DAS CALDAS<br>
+                <br><a href=@{ListacR}">
+                <input type="button" value="LISTA DAS CALDAS" style="color:red;font-weight:bold"><br> 
                    
                 <br><img src=@{StaticR img_acompanhamento_jpg}>
 
-                <br><a href=@{AcompanhamentoR}>
-                         CADASTRO DE ACOMPANHAMENTOS
+                <br><a href=@{AcompanhamentoR}">
+                <input type="button" value="CADASTRO DE ACOMPANHAMENTOS" style="blue:black;font-weight:bold"><br> 
                         
-                <br><a href=@{ListaaR}>
-                         LISTA DOS ACOMPANHAMENTOS
-               
-              
+                <br><a href=@{ListaaR}">
+                <input type="button" value="LISTA DOS ACOMPANHAMENTOS" style="blue:black;font-weight:bold"><br> 
+                 
         |]
