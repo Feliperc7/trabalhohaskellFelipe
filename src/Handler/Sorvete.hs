@@ -55,7 +55,7 @@ getDescsR sid = do
 -- select * from sorvete order by preco desc
 getListasR :: Handler Html 
 getListasR = do 
-    -- sorvetes :: [Entity ProdutoId Produto]
+    -- sorvetes :: [Entity SorveteId Sorvete]
     sorvetes <- runDB $ selectList [] [Desc SorvetePreco]
     defaultLayout [whamlet|
 
