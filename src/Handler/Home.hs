@@ -19,7 +19,7 @@ getHomeR = do
                 
                 <marquee><h2>Seja bem-vindo ao sistema de cadastro da sorveteria - Aqui você pode cadastrar, listar, editar e remover sabores de sorvete, caldas e acompanhamentos!!!<br></marquee>
             
-            <img src=@{StaticR img_sorvete_jpg}>
+                <img src=@{StaticR img_sorvete_jpg}>
             
                 <br><a href="@{SorveteR}">                                                                
                 <input type="button" value="CADASTRO DE SORVETES" style="color:black;font-weight:bold"> 
@@ -29,7 +29,7 @@ getHomeR = do
       
                 <br><img src=@{StaticR img_calda_jpg}>
 
-                <br><a href="@{CaldaR}">
+                <a href="@{CaldaR}">
                 <input type="button" value="CADASTRO DE CALDAS" style="color:red;font-weight:bold">
 
                 <br><a href="@{ListacR}">
@@ -37,7 +37,7 @@ getHomeR = do
                    
                 <br><img src=@{StaticR img_acompanhamento_jpg}>
 
-                <br><a href="@{AcompanhamentoR}">
+                <a href="@{AcompanhamentoR}">
                 <input type="button" value="CADASTRO DE ACOMPANHAMENTOS" style="color:green;font-weight:bold"> 
                         
                 <br><a href="@{ListaaR}">
