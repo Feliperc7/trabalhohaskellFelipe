@@ -22,9 +22,10 @@ auxAcompR :: Route App -> Maybe Acompanhamento -> Handler Html
 auxAcompR rt mp = do
     (widget,_) <- generateFormPost (formAcompanhamento mp)
     defaultLayout [whamlet|
-        <form action=@{rt} method=post>
-            ^{widget}
-            <input type="submit" value="Cadastrar acompanhamento para o sorvete">
+        <body style="background-color:LimeGreen;">
+       <center><form action=@{rt} method=post>
+           ^{widget}
+            <input type="submit" value="Cadastrar acompanhamento"></center>
     |]
 
 getAcompanhamentoR :: Handler Html
