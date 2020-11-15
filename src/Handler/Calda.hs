@@ -12,9 +12,9 @@ formCalda :: Maybe Calda -> Form Calda
 formCalda mp = renderDivs $ Calda
     <$> areq textField (FieldSettings "Nome: "
                                       Nothing
-                                      (Just "hs1")
+                                      (Just "hs2")
                                       Nothing
-                                      [("class","classe1")]
+                                      [("class","classe2")]
                        ) (fmap caldaNome mp) 
     <*> areq doubleField "Preco: " (fmap caldaPreco mp) 
 
@@ -44,6 +44,8 @@ getDesccR :: CaldaId -> Handler Html
 getDesccR cid = do
     calda <- runDB $ get404 cid
     defaultLayout [whamlet|
+        <body style="background-coor:Turquoise;">
+        <caption> <h1> <center>CADASTRO DE CALDAS</center> </caption>
         <h1>
             Nome: #{caldaNome calda}
         
@@ -59,6 +61,7 @@ getListacR = do
     defaultLayout [whamlet|
         <table>
         <body style="background-color:aquamarine;">
+        <caption> <h1> <center>CALDAS CADASTRADAS</center> </caption>
             <thead>
                 <tr>
                     <th>
