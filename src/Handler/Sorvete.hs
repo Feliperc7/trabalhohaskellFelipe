@@ -24,9 +24,9 @@ auxSorveteR rt mp = do
     (widget,_) <- generateFormPost (formSorvete mp)
     defaultLayout [whamlet|
         <body style="background-color:DarkSalmon;">
-       <center><form action=@{rt} method=post>
+        <center><form action=@{rt} method=post>
             ^{widget}
-            <input type="submit" value="Cadastrar sabor de sorvete"></center>
+            <input type="submit" value="Cadastrar sorvete"></center>
     |]
 
 getSorveteR :: Handler Html
@@ -49,19 +49,46 @@ getDescsR sid = do
           <body style="background-color:DarkSalmon;">
           <caption> <h1> CADASTRO DE SORVETES </caption>
 
-        <center><h2>Nome: #{sorveteNome sorvete}
-                <h2>Preço: #{sorvetePreco sorvete}</center>
+          <center><h2>Nome: #{sorveteNome sorvete}
+                  <h2>Preço: R$ #{sorvetePreco sorvete}</center>
+
+           <table width="80%" style="margin: 0 auto; border:1px solid;text-align:center"> 
+                <th><h2>Nome:
+                <th><h2>Preço:
+ 
+                <td> #{sorveteNome sorvete}
+                <td> R$ #{sorvetePreco sorvete}
         
     |]
      
 
--- select * from sorvete order by preco desc
 getListasR :: Handler Html 
 getListasR = do 
     -- sorvetes :: [Entity SorveteId Sorvete]
     sorvetes <- runDB $ selectList [] [Desc SorvetePreco]
     defaultLayout [whamlet|
-         
+        
+        <head>
+        <style>
+        table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        margin: auto;
+        }
+
+        td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+        }
+
+        tr:nth-child(even) {
+        background-color: #dddddd;
+        }
+       
+        <body>
+
         <table border="3">
         <body style="background-color:palegoldenrod;">
         <caption> <h1> <center>SORVETES CADASTRADOS</center> </caption>
@@ -71,10 +98,7 @@ getListasR = do
                     <th>
                         Nome
                     <th>
-                        Preco
-                    <th>
-                    
-                    <th>
+                        Preco 
             
             <tbody>
                 $forall Entity sid sorvete <- sorvetes
@@ -83,7 +107,7 @@ getListasR = do
                             #{sorveteNome sorvete}
                         
                         <td>
-                            #{sorvetePreco sorvete}
+                            R$ #{sorvetePreco sorvete}
                         
                         <td>
                             <a href=@{UpdSorvR sid}>
