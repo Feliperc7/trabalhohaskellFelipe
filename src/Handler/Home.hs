@@ -14,8 +14,8 @@ getHomeR = do
         addStylesheet (StaticR css_bootstrap_css)
         [whamlet|
             <body style="background-color:powderblue;">
-            <h1>
-                <center>SISTEMA DA SORVETERIA</center>
+            
+                <center><h1>SISTEMA DA SORVETERIA</center>
                 
                 <marquee><h2>Seja bem-vindo ao sistema de cadastro da sorveteria - Aqui você pode cadastrar, listar, editar e remover sabores de sorvete, caldas e acompanhamentos!!!<br></marquee>
             
@@ -29,7 +29,7 @@ getHomeR = do
       
                 <br><img src=@{StaticR img_calda_jpg}>
 
-                <a href="@{CaldaR}">
+                <br><a href="@{CaldaR}">
                 <input type="button" value="CADASTRO DE CALDAS" style="color:red;font-weight:bold">
 
                 <br><a href="@{ListacR}">
@@ -37,7 +37,7 @@ getHomeR = do
                    
                 <br><img src=@{StaticR img_acompanhamento_jpg}>
 
-                <a href="@{AcompanhamentoR}">
+                <br><a href="@{AcompanhamentoR}">
                 <input type="button" value="CADASTRO DE ACOMPANHAMENTOS" style="color:green;font-weight:bold"> 
                         
                 <br><a href="@{ListaaR}">
