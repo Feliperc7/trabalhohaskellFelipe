@@ -23,6 +23,7 @@ auxCaldaR rt mp = do
     (widget,_) <- generateFormPost (formCalda mp)
     defaultLayout [whamlet|
         <body style="background-color:CadetBlue;">
+        <center><caption> <h1> CADASTRO DE CALDAS </caption></center><br>
         <center><form action=@{rt} method=post>
             ^{widget}
             <input type="submit" value="Cadastrar calda"></center>
@@ -46,7 +47,7 @@ getDesccR cid = do
     calda <- runDB $ get404 cid
     defaultLayout [whamlet|
         <body style="background-coor:Turquoise;">
-        <caption> <h1> <center>CADASTRO DE CALDAS</center> </caption>
+        <caption> <h1> <center>CALDA CADASTRADA!</center> </caption>
         <h1>
             Nome: #{caldaNome calda}
         
