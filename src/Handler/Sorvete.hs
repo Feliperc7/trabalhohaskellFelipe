@@ -16,15 +16,17 @@ formSorvete mp = renderDivs $ Sorvete
                                       Nothing
                                       [("class","classe1")]
                        ) (fmap sorveteNome mp) 
-    <*> areq doubleField "Preco: " (fmap sorvetePreco mp) 
+    <*> areq doubleField "Preco: " (fmap sorvetePreco mp)
+    
 
 auxSorveteR :: Route App -> Maybe Sorvete -> Handler Html    
 auxSorveteR rt mp = do
     (widget,_) <- generateFormPost (formSorvete mp)
     defaultLayout [whamlet|
-        <form action=@{rt} method=post>
+        <body style="background-color:DarkSalmon;">
+       <center><form action=@{rt} method=post>
             ^{widget}
-            <input type="submit" value="Cadastrar sabor de sorvete">
+            <input type="submit" value="Cadastrar sabor de sorvete"></center>
     |]
 
 getSorveteR :: Handler Html
@@ -44,13 +46,14 @@ getDescsR :: SorveteId -> Handler Html
 getDescsR sid = do
     sorvete <- runDB $ get404 sid
     defaultLayout [whamlet|
-         
-        <h2>
-            Nome: #{sorveteNome sorvete}
+          <body style="background-color:DarkSalmon;">
+          <caption> <h1> CADASTRO DE SORVETES </caption>
+
+        <center><h2>Nome: #{sorveteNome sorvete}
+                <h2>Preço: #{sorvetePreco sorvete}</center>
         
-        <h2>
-            Preço: #{sorvetePreco sorvete}
     |]
+     
 
 -- select * from sorvete order by preco desc
 getListasR :: Handler Html 
@@ -59,9 +62,10 @@ getListasR = do
     sorvetes <- runDB $ selectList [] [Desc SorvetePreco]
     defaultLayout [whamlet|
          
-        <table border="1">
+        <table border="3">
         <body style="background-color:palegoldenrod;">
-        <caption> <h1> SORVETES CADASTRADOS </caption>
+        <caption> <h1> <center>SORVETES CADASTRADOS</center> </caption>
+            <br>
             <thead>
                 <tr>
                     <th>
@@ -87,7 +91,7 @@ getListasR = do
                         
                         <td>
                             <form action=@{DelSorvR sid} method=post>
-                                <input type="submit" value="X">
+                                <input type="submit" value="Excluir" style="color:red">
     |]
 
 getUpdSorvR :: SorveteId -> Handler Html
