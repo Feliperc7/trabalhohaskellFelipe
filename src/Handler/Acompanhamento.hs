@@ -23,7 +23,8 @@ auxAcompR rt mp = do
     (widget,_) <- generateFormPost (formAcompanhamento mp)
     defaultLayout [whamlet|
         <body style="background-color:LimeGreen;">
-       <center><form action=@{rt} method=post>
+        <center><caption> <h1> CADASTRO DE ACOMPANHAMENTOS </caption></center><br>
+        <center><form action=@{rt} method=post>
            ^{widget}
             <input type="submit" value="Cadastrar acompanhamento"></center>
     |]
@@ -46,7 +47,7 @@ getDescaR aid = do
     acompanhamento <- runDB $ get404 aid
     defaultLayout [whamlet|
         <body style="background-coor:MediumSeaGreen;">
-         <caption> <h1> <center>CADASTRO DE ACOMPANHAMENTOS</center> </caption>
+         <caption> <h1> <center>ACOMPANHAMENTO CADASTRADO!</center> </caption>
         <h1>
             Nome: #{acompanhamentoNome acompanhamento}
         
