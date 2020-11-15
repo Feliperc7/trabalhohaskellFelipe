@@ -22,9 +22,10 @@ auxCaldaR :: Route App -> Maybe Calda -> Handler Html
 auxCaldaR rt mp = do
     (widget,_) <- generateFormPost (formCalda mp)
     defaultLayout [whamlet|
-        <form action=@{rt} method=post>
+        <body style="background-color:CadetBlue;">
+        <center><form action=@{rt} method=post>
             ^{widget}
-            <input type="submit" value="Cadastrar Calda de sorvete">
+            <input type="submit" value="Cadastrar calda"></center>
     |]
 
 getCaldaR :: Handler Html
