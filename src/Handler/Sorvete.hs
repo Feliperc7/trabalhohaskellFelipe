@@ -24,6 +24,7 @@ auxSorveteR rt mp = do
     (widget,_) <- generateFormPost (formSorvete mp)
     defaultLayout [whamlet|
         <body style="background-color:DarkSalmon;">
+        <center><caption> <h1> CADASTRO DE SORVETES </caption></center><br>
         <center><form action=@{rt} method=post>
             ^{widget}
             <input type="submit" value="Cadastrar sorvete"></center>
@@ -47,17 +48,18 @@ getDescsR sid = do
     sorvete <- runDB $ get404 sid
     defaultLayout [whamlet|
           <body style="background-color:DarkSalmon;">
-          <caption> <h1> CADASTRO DE SORVETES </caption>
+          <center><caption> <h1> SORVETE CADASTRADO! </caption></center>
 
-          <center><h2>Nome: #{sorveteNome sorvete}
-                  <h2>Preço: R$ #{sorvetePreco sorvete}</center>
+           <table width="100%" style="margin: 0 auto; border:3px solid;text-align:left"> 
+                <th><h1>Sorvete: <h2>#{sorveteNome sorvete}
+                <th><h1>Preço: <h2>R$ #{sorvetePreco sorvete}
+          
 
-           <table width="80%" style="margin: 0 auto; border:1px solid;text-align:center"> 
-                <th><h2>Nome:
-                <th><h2>Preço:
- 
-                <td> #{sorveteNome sorvete}
-                <td> R$ #{sorvetePreco sorvete}
+                 <br><a href="@{HomeR}"> 
+                 <input type="button" value="VOLTAR PARA A PÁGINA INICIAL" style="color:black;font-weight:bold">
+
+                 <br><a href="@{SorveteR}"> 
+                 <input type="button" value="CADASTRAR OUTRO SORVETE" style="color:black;font-weight:bold"> 
         
     |]
      
@@ -67,55 +69,32 @@ getListasR = do
     -- sorvetes :: [Entity SorveteId Sorvete]
     sorvetes <- runDB $ selectList [] [Desc SorvetePreco]
     defaultLayout [whamlet|
-        
-        <head>
-        <style>
-        table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-        margin: auto;
-        }
-
-        td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-        }
-
-        tr:nth-child(even) {
-        background-color: #dddddd;
-        }
-       
-        <body>
-
         <table border="3">
         <body style="background-color:palegoldenrod;">
         <caption> <h1> <center>SORVETES CADASTRADOS</center> </caption>
-            <br>
-            <thead>
-                <tr>
-                    <th>
-                        Nome
-                    <th>
-                        Preco 
-            
-            <tbody>
+                <thead>
+                  <tr>
+                     <th>Nome</th>
+                     <th>Preço</th>
+                <tbody>
                 $forall Entity sid sorvete <- sorvetes
-                    <tr>
-                        <td>
-                            #{sorveteNome sorvete}
+                  <tr>
+                     <td> #{sorveteNome sorvete} </td>
                         
-                        <td>
-                            R$ #{sorvetePreco sorvete}
+                     <td> R$ #{sorvetePreco sorvete} </td> 
                         
-                        <td>
-                            <a href=@{UpdSorvR sid}>
-                                Editar
-                        
-                        <td>
-                            <form action=@{DelSorvR sid} method=post>
-                                <input type="submit" value="Excluir" style="color:red">
+                     <td> <a href=@{UpdSorvR sid}> 
+                                Editar             </td>
+     
+                     <td> <form action=@{DelSorvR sid} method=post>
+                          <input type="submit" value="Excluir" style="color:red"> </td>
+
+                     <br><a href="@{SorveteR}"> 
+                     <input type="button" value="CADASTRAR OUTRO SORVETE" style="color:black;font-weight:bold"> 
+           
+                     <br><a href="@{HomeR}"> 
+                     <input type="button" value="VOLTAR PARA A PÁGINA INICIAL" style="color:black;font-weight:bold">
+               
     |]
 
 getUpdSorvR :: SorveteId -> Handler Html
@@ -123,7 +102,6 @@ getUpdSorvR sid = do
     antigo <- runDB $ get404 sid 
     auxSorveteR (UpdSorvR sid) (Just antigo)
 
--- UPDATE FROM sorvete WHERE id = sid SET ...
 postUpdSorvR :: SorveteId -> Handler Html
 postUpdSorvR sid = do
     ((res,_),_) <- runFormPost (formSorvete Nothing)
