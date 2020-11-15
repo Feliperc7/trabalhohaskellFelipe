@@ -12,9 +12,9 @@ formAcompanhamento :: Maybe Acompanhamento -> Form Acompanhamento
 formAcompanhamento mp = renderDivs $ Acompanhamento
     <$> areq textField (FieldSettings "Nome: "
                                       Nothing
-                                      (Just "hs1")
+                                      (Just "hs3")
                                       Nothing
-                                      [("class","classe1")]
+                                      [("class","classe3")]
                        ) (fmap acompanhamentoNome mp) 
     <*> areq doubleField "Preco: " (fmap acompanhamentoPreco mp) 
 
@@ -44,6 +44,8 @@ getDescaR :: AcompanhamentoId -> Handler Html
 getDescaR aid = do
     acompanhamento <- runDB $ get404 aid
     defaultLayout [whamlet|
+        <body style="background-coor:MediumSeaGreen;">
+         <caption> <h1> <center>CADASTRO DE ACOMPANHAMENTOS</center> </caption>
         <h1>
             Nome: #{acompanhamentoNome acompanhamento}
         
@@ -59,6 +61,7 @@ getListaaR = do
     defaultLayout [whamlet|
         <table>
         <body style="background-color:lightgreen;">
+        <caption> <h1> <center>ACOMPANHAMENTOS CADASTRADOS</center> </caption>
             <thead>
                 <tr>
                     <th>
