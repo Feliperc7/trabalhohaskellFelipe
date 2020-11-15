@@ -17,7 +17,7 @@ getHomeR = do
             
                 <center><h1>SISTEMA DA SORVETERIA</center>
                 
-                <marquee><h2>Seja bem-vindo ao sistema de cadastro da sorveteria - Aqui você pode cadastrar, listar, editar e remover sabores de sorvete, caldas e acompanhamentos!!!<br></marquee>
+                <marquee><h2>Seja bem-vindo ao sistema de cadastro da sorveteria - Aqui você pode cadastrar, listar, editar                              e remover sabores de sorvete, caldas e acompanhamentos!!!<br></marquee>
             
                 <img src=@{StaticR img_sorvete_jpg}>
             
