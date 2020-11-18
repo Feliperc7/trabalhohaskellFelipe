@@ -26,7 +26,7 @@ auxCaldaR rt mp = do
         <center><caption> <h1> CADASTRO DE CALDAS </caption></center><br>
         <center><form action=@{rt} method=post>
             ^{widget}
-            <input type="submit" value="Cadastrar calda"></center>
+            <input type="submit" value="Cadastrar"></center>
     |]
 
 getCaldaR :: Handler Html
@@ -46,51 +46,59 @@ getDesccR :: CaldaId -> Handler Html
 getDesccR cid = do
     calda <- runDB $ get404 cid
     defaultLayout [whamlet|
-        <body style="background-coor:Turquoise;">
-        <caption> <h1> <center>CALDA CADASTRADA!</center> </caption>
-        <h1>
-            Nome: #{caldaNome calda}
+        <body style="background-color:Turquoise;">
+
+        <br><a href=@{HomeR}> 
+        <input type="button" value="VOLTAR PARA A PÁGINA INICIAL" style="color:black;font-weight:bold">
+
+        <br><a href=@{CaldaR}> 
+        <input type="button" value="CADASTRAR OUTRA CALDA" style="color:black;font-weight:bold"></a><br>
+
+        <br><caption> <h1> <center>CALDA CADASTRADA!</center> </caption>
+          
+        <table width="100%" style="border:10px solid;text-align:center"> 
+                <th><h2>Calda: <h2>#{caldaNome calda}
+                <th><h2>Preço: <h2>R$ #{caldaPreco calda}
         
-        <h2>
-            Preço: #{caldaPreco calda}
     |]
 
--- select * from Calda order by preco desc
 getListacR :: Handler Html 
 getListacR = do 
     -- caldas :: [Entity CaldaId Calda]
     caldas <- runDB $ selectList [] [Desc CaldaPreco]
     defaultLayout [whamlet|
-        <table>
         <body style="background-color:aquamarine;">
-        <caption> <h1> <center>CALDAS CADASTRADAS</center> </caption>
-            <thead>
+     
+        <br><a href=@{HomeR}> 
+        <input type="button" value="VOLTAR PARA A PÁGINA INICIAL" style="color:black;font-weight:bold">
+
+        <br><a href=@{CaldaR}> 
+        <input type="button" value="CADASTRAR OUTRA CALDA" style="color:black;font-weight:bold"></a><br>
+
+        <center><table width="70%" style="background-color:maroon; border:2px solid;text-align:center">
+       
+         <caption> <h1> <center>CALDAS CADASTRADAS</center> </caption> 
+            <thead style="color: white">  
+                
+                    <th><h1>Nome</th>
+                    <th><h1>Preço</th>
+             
+            <tbody style="background-color: white">
+                
+                  $forall Entity cid calda <- caldas
+                
+                    <td><h3> #{caldaNome calda}</td>
+                        
+                    <td><h3> R$ #{caldaPreco calda}</td>
+                            
+                    <td><h3> <a href=@{UpdCaldR cid}> <input type="submit" value="Editar" style="color:blue"></a></td>
+
+                    <td><h3> <form action=@{DelCaldR cid} method=post> <input type="submit" value="Excluir"style="color:red"></td><tr>
+
                 <tr>
-                    <th>
-                        Nome
-                    <th>
-                        Preco
-                    <th>
-                    
-                    <th>
-            
-            <tbody>
-                $forall Entity cid calda <- caldas
-                    <tr>
-                        <td>
-                            #{caldaNome calda}
-                        
-                        <td>
-                            #{caldaPreco calda}
-                        
-                        <td>
-                            <a href=@{UpdCaldR cid}>
-                                Editar
-                        
-                        <td>
-                            <form action=@{DelCaldR cid} method=post>
-                                <input type="submit" value="X">
-    |]
+                <br>
+
+    |] 
 
 getUpdCaldR :: CaldaId -> Handler Html
 getUpdCaldR cid = do
