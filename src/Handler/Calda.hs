@@ -54,9 +54,10 @@ getDesccR cid = do
         <br><a href=@{CaldaR}> 
         <input type="button" value="CADASTRAR OUTRA CALDA" style="color:black;font-weight:bold"></a><br>
 
-        <br><caption> <h1> <center>CALDA CADASTRADA!</center> </caption>
+        <center><caption> <h1> CALDA CADASTRADA! </caption></center>
           
         <table width="100%" style="border:10px solid;text-align:center"> 
+               <tr>
                 <th><h2>Calda: <h2>#{caldaNome calda}
                 <th><h2>Preço: <h2>R$ #{caldaPreco calda}
         
