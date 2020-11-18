@@ -19,7 +19,7 @@ getHomeR = do
                 
                 <marquee><h2>Seja bem-vindo ao sistema de cadastro da sorveteria - Aqui você pode cadastrar, listar, editar                              e remover sabores de sorvete, caldas e acompanhamentos!!!<br></marquee>
             
-                <img src=@{StaticR img_sorvete_jpg}>
+                <img src=@{StaticR img_sorvete_jpg}> 
             
                 <br><a href="@{SorveteR}">                                                                
                 <input type="button" value="CADASTRO DE SORVETES" style="color:black;font-weight:bold"> 
