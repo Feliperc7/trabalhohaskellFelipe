@@ -25,7 +25,7 @@ getHomeR = do
                 <input type="button" value="CADASTRO DE SORVETES" style="color:black;font-weight:bold"> 
                         
                 <br><a href="@{ListasR}">                                                                 
-                <input type="button" value="LISTA DOS SORVETES" style="color:black;font-weight:bold"><br> 
+                <input type="button" value="LISTA DOS SORVETES" style="color:black;font-weight:bold"></a><br> 
       
                 <br><img src=@{StaticR img_calda_jpg}>
 
@@ -33,7 +33,7 @@ getHomeR = do
                 <input type="button" value="CADASTRO DE CALDAS" style="color:red;font-weight:bold">
 
                 <br><a href="@{ListacR}">
-                <input type="button" value="LISTA DAS CALDAS" style="color:red;font-weight:bold"><br> 
+                <input type="button" value="LISTA DAS CALDAS" style="color:red;font-weight:bold"></a><br> 
                    
                 <br><img src=@{StaticR img_acompanhamento_jpg}>
 
