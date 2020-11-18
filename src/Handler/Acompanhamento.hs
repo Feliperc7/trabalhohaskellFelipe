@@ -26,7 +26,7 @@ auxAcompR rt mp = do
         <center><caption> <h1> CADASTRO DE ACOMPANHAMENTOS </caption></center><br>
         <center><form action=@{rt} method=post>
            ^{widget}
-            <input type="submit" value="Cadastrar acompanhamento"></center>
+            <input type="submit" value="Cadastrar"></center>
     |]
 
 getAcompanhamentoR :: Handler Html
@@ -46,13 +46,19 @@ getDescaR :: AcompanhamentoId -> Handler Html
 getDescaR aid = do
     acompanhamento <- runDB $ get404 aid
     defaultLayout [whamlet|
-        <body style="background-coor:MediumSeaGreen;">
-         <caption> <h1> <center>ACOMPANHAMENTO CADASTRADO!</center> </caption>
-        <h1>
-            Nome: #{acompanhamentoNome acompanhamento}
+          <body style="background-color:MediumSeaGreen;">
         
-        <h2>
-            Preço: #{acompanhamentoPreco acompanhamento}
+          <br><a href=@{HomeR}> 
+          <input type="button" value="VOLTAR PARA A PÁGINA INICIAL" style="color:black;font-weight:bold">
+
+          <br><a href=@{AcompanhamentoR}> 
+          <input type="button" value="CADASTRAR OUTRO ACOMPANHAMENTO" style="color:black;font-weight:bold"></a><br>
+
+          <caption> <h1> <center>ACOMPANHAMENTO CADASTRADO!</center> </caption>
+        
+          <table width="100%" style="border:10px solid;text-align:center"> 
+                <th><h1>Acompanhamento: <h2>#{acompanhamentoNome acompanhamento}
+                <th><h1>Preço: <h2>R$ #{acompanhamentoPreco acompanhamento}
     |]
 
 -- select * from Acompanhamento order by preco desc
@@ -61,35 +67,37 @@ getListaaR = do
     -- acompanhamento :: [Entity AcompanhamentoId Acompanhamento]
     acompanhamentos <- runDB $ selectList [] [Desc AcompanhamentoPreco]
     defaultLayout [whamlet|
-        <table>
         <body style="background-color:lightgreen;">
-        <caption> <h1> <center>ACOMPANHAMENTOS CADASTRADOS</center> </caption>
-            <thead>
+
+        <br><a href=@{HomeR}> 
+        <input type="button" value="VOLTAR PARA A PÁGINA INICIAL" style="color:black;font-weight:bold">
+
+        <br><a href=@{AcompanhamentoR}> 
+        <input type="button" value="CADASTRAR OUTRO ACOMPANHAMENTO" style="color:black;font-weight:bold"></a><br>
+
+        <center><table width="70%" style="background-color:forestgreen; border:2px solid;text-align:center">
+       
+         <caption> <h1> <center>ACOMPANHAMENTOS CADASTRADOS</center> </caption> 
+            <thead style="color: white">  
+                
+                    <th><h1>Nome</th>
+                    <th><h1>Preço</th>
+             
+            <tbody style="background-color: white">
+                
+                  $forall Entity aid acompanhamento <- acompanhamentos
+                
+                    <td><h3> #{acompanhamentoNome acompanhamento}</td>
+                        
+                    <td><h3> R$ #{acompanhamentoPreco acompanhamento}</td>
+                            
+                    <td><h3> <a href=@{UpdAcompR aid}> <input type="submit" value="Editar" style="color:blue"></a></td>
+
+                    <td><h3> <form action=@{DelAcompR aid} method=post> <input type="submit" value="Excluir"style="color:red"></td><tr>
+
                 <tr>
-                    <th>
-                        Nome
-                    <th>
-                        Preco
-                    <th>
-                    
-                    <th>
-            
-            <tbody>
-                $forall Entity aid acompanhamento <- acompanhamentos
-                    <tr>
-                        <td>
-                            #{acompanhamentoNome acompanhamento}
-                        
-                        <td>
-                            #{acompanhamentoPreco acompanhamento}
-                        
-                        <td>
-                            <a href=@{UpdAcompR aid}>
-                                Editar
-                        
-                        <td>
-                            <form action=@{DelAcompR aid} method=post>
-                                <input type="submit" value="X">
+                <br>
+
     |]
 
 getUpdAcompR :: AcompanhamentoId -> Handler Html
@@ -111,5 +119,5 @@ postUpdAcompR aid = do
 postDelAcompR :: AcompanhamentoId -> Handler Html
 postDelAcompR aid = do
     runDB $ delete aid 
-    redirect ListacR
+    redirect ListaaR
 
