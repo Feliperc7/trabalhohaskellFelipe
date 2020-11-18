@@ -27,7 +27,7 @@ auxSorveteR rt mp = do
         <center><caption> <h1> CADASTRO DE SORVETES </caption></center><br>
         <center><form action=@{rt} method=post>
             ^{widget}
-            <input type="submit" value="Cadastrar sorvete"></center>
+            <input type="submit" value="Cadastrar"></center>
     |]
 
 getSorveteR :: Handler Html
@@ -42,60 +42,67 @@ postSorveteR = do
              redirect (DescsR sid)
          _ -> redirect HomeR
 
--- SELECT * from sorvete where id = sid
 getDescsR :: SorveteId -> Handler Html
 getDescsR sid = do
     sorvete <- runDB $ get404 sid
     defaultLayout [whamlet|
           <body style="background-color:DarkSalmon;">
+
+          <br><a href="@{HomeR}"> 
+          <input type="button" value="VOLTAR PARA A PÁGINA INICIAL" style="color:black;font-weight:bold">
+
+          <br><a href="@{SorveteR}"> 
+          <input type="button" value="CADASTRAR OUTRO SORVETE" style="color:black;font-weight:bold"></a><br>
+
           <center><caption> <h1> SORVETE CADASTRADO! </caption></center>
 
-           <table width="100%" style="margin: 0 auto; border:3px solid;text-align:left"> 
-                <th><h1>Sorvete: <h2>#{sorveteNome sorvete}
-                <th><h1>Preço: <h2>R$ #{sorvetePreco sorvete}
-          
-
-                 <br><a href="@{HomeR}"> 
-                 <input type="button" value="VOLTAR PARA A PÁGINA INICIAL" style="color:black;font-weight:bold">
-
-                 <br><a href="@{SorveteR}"> 
-                 <input type="button" value="CADASTRAR OUTRO SORVETE" style="color:black;font-weight:bold"> 
-        
+           <table width="100%" style="border:10px solid;text-align:center"> 
+               <tr>
+                <th><h1>Sorvete: <h2>#{sorveteNome sorvete}</th>
+                <th><h1>Preço: <h2>R$ #{sorvetePreco sorvete}</th>
+                       
     |]
-     
 
+   
 getListasR :: Handler Html 
 getListasR = do 
-    -- sorvetes :: [Entity SorveteId Sorvete]
     sorvetes <- runDB $ selectList [] [Desc SorvetePreco]
     defaultLayout [whamlet|
-        <table border="3">
-        <body style="background-color:palegoldenrod;">
-        <caption> <h1> <center>SORVETES CADASTRADOS</center> </caption>
-                <thead>
-                  <tr>
-                     <th>Nome</th>
-                     <th>Preço</th>
-                <tbody>
-                $forall Entity sid sorvete <- sorvetes
-                  <tr>
-                     <td> #{sorveteNome sorvete} </td>
-                        
-                     <td> R$ #{sorvetePreco sorvete} </td> 
-                        
-                     <td> <a href=@{UpdSorvR sid}> 
-                                Editar             </td>
-     
-                     <td> <form action=@{DelSorvR sid} method=post>
-                          <input type="submit" value="Excluir" style="color:red"> </td>
+        
+        <body style="background-color:palegoldenrod">
 
-                     <br><a href="@{SorveteR}"> 
-                     <input type="button" value="CADASTRAR OUTRO SORVETE" style="color:black;font-weight:bold"> 
+        <br><a href=@{SorveteR}> 
+        <input type="button" value="CADASTRAR OUTRO SORVETE" style="color:black;font-weight:bold"></a> 
            
-                     <br><a href="@{HomeR}"> 
-                     <input type="button" value="VOLTAR PARA A PÁGINA INICIAL" style="color:black;font-weight:bold">
-               
+        <br><a href=@{HomeR}> 
+        <input type="button" value="VOLTAR PARA A PÁGINA INICIAL" style="color:black;font-weight:bold"></a><br>
+  
+        <center><table width="70%" style="background-color:black; border:2px solid;text-align:center">
+       
+         <caption> <h1> <center>SORVETES CADASTRADOS</center> </caption> 
+            <thead style="color: white">  
+                
+                    <th><h1>Nome</th>
+                    <th><h1>Preço</th>
+             
+            <tbody style="background-color: white">
+                
+                  $forall Entity sid sorvete <- sorvetes
+                
+                    <td><h3> #{sorveteNome sorvete}</td>
+                        
+                    <td><h3> R$ #{sorvetePreco sorvete}</td>
+                            
+                    <td><h3> <a href=@{UpdSorvR sid}> <input type="submit" value="Editar" style="color:blue"></a></td>
+
+                    <td><h3> <form action=@{DelSorvR sid} method=post> <input type="submit" value="Excluir"style="color:red"></td><tr>
+
+                <tr>
+                <br>
+                
+                           
     |]
+   
 
 getUpdSorvR :: SorveteId -> Handler Html
 getUpdSorvR sid = do
