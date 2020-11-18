@@ -58,8 +58,8 @@ getDescsR sid = do
 
            <table width="100%" style="border:10px solid;text-align:center"> 
                <tr>
-                <th><h1>Sorvete: <h2>#{sorveteNome sorvete}</th>
-                <th><h1>Preço: <h2>R$ #{sorvetePreco sorvete}</th>
+                <th><h2>Sorvete: <h2>#{sorveteNome sorvete}</th>
+                <th><h2>Preço: <h2>R$ #{sorvetePreco sorvete}</th>
                        
     |]
 
