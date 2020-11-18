@@ -54,11 +54,12 @@ getDescaR aid = do
           <br><a href=@{AcompanhamentoR}> 
           <input type="button" value="CADASTRAR OUTRO ACOMPANHAMENTO" style="color:black;font-weight:bold"></a><br>
 
-          <caption> <h1> <center>ACOMPANHAMENTO CADASTRADO!</center> </caption>
+          <center><caption> <h1> ACOMPANHAMENTO CADASTRADO! </caption></center>
         
           <table width="100%" style="border:10px solid;text-align:center"> 
-                <th><h1>Acompanhamento: <h2>#{acompanhamentoNome acompanhamento}
-                <th><h1>Preço: <h2>R$ #{acompanhamentoPreco acompanhamento}
+               <tr>
+                <th><h2>Acompanhamento: <h2>#{acompanhamentoNome acompanhamento}
+                <th><h2>Preço: <h2>R$ #{acompanhamentoPreco acompanhamento}
     |]
 
 -- select * from Acompanhamento order by preco desc
