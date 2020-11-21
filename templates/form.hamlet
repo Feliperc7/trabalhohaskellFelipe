@@ -1,0 +1,12 @@
+$maybe mensa <- msg
+     <div>
+         ^{mensa}
+
+<br><a href=@{HomeR}> 
+        <input type="button" value="VOLTAR PARA A PÁGINA INICIAL" style="color:black;font-weight:bold"></a><br>
+
+<h1> <center>CADASTRO DE USUÁRIO</center>
+         
+   <br><br><center><form method=post action=@{UsuarioR}>
+        ^{widget}
+        <input type="submit" value="Cadastrar"></center>
