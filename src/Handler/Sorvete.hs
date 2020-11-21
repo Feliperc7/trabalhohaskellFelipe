@@ -7,6 +7,7 @@
 module Handler.Sorvete where
 
 import Import
+import Tool
 
 formSorvete :: Maybe Sorvete -> Form Sorvete
 formSorvete mp = renderDivs $ Sorvete
@@ -45,6 +46,7 @@ postSorveteR = do
 getDescsR :: SorveteId -> Handler Html
 getDescsR sid = do
     sorvete <- runDB $ get404 sid
+    (widget,_) <- generateFormPost formPote
     defaultLayout [whamlet|
           <body style="background-color:DarkSalmon;">
 
@@ -60,6 +62,10 @@ getDescsR sid = do
                <tr>
                 <th><h2>Sorvete: <h2>#{sorveteNome sorvete}</th>
                 <th><h2>Preço: <h2>R$ #{sorvetePreco sorvete}</th>
+           
+                <br><form action=@{CompraSorvR sid} method=post>
+                ^{widget}
+                    <input type="submit" value="Adicionar ao Carrinho">
                        
     |]
 
@@ -68,7 +74,6 @@ getListasR :: Handler Html
 getListasR = do 
     sorvetes <- runDB $ selectList [] [Desc SorvetePreco]
     defaultLayout [whamlet|
-        
         <body style="background-color:palegoldenrod">
 
         <br><a href=@{SorveteR}> 
@@ -89,7 +94,8 @@ getListasR = do
                 
                   $forall Entity sid sorvete <- sorvetes
                 
-                    <td><h3> #{sorveteNome sorvete}</td>
+                    <td><h3> <a href=@{DescsR sid}>
+                             #{sorveteNome sorvete}</td>
                         
                     <td><h3> R$ #{sorvetePreco sorvete}</td>
                             
