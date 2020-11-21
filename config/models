@@ -12,3 +12,26 @@ Acompanhamento
     nome  Text
     preco Double 
     deriving Show
+
+CompraSorv
+    usuarioid UsuarioId
+    sorveteid SorveteId
+    pote      Int
+    deriving Show
+
+CompraCald
+    usuarioid UsuarioId
+    caldaid   CaldaId
+    pote      Int
+
+CompraAcomp
+    usuarioid        UsuarioId
+    acompanhamentoid AcompanhamentoId
+    pote             Int
+
+Usuario
+    nome  Text
+    email Text
+    senha Text
+    UniqueEmail email
+    deriving Show
