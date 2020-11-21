@@ -7,6 +7,7 @@
 module Handler.Acompanhamento where
 
 import Import
+import Tool
 
 formAcompanhamento :: Maybe Acompanhamento -> Form Acompanhamento
 formAcompanhamento mp = renderDivs $ Acompanhamento
@@ -45,6 +46,7 @@ postAcompanhamentoR = do
 getDescaR :: AcompanhamentoId -> Handler Html
 getDescaR aid = do
     acompanhamento <- runDB $ get404 aid
+    (widget,_) <- generateFormPost formPote
     defaultLayout [whamlet|
           <body style="background-color:MediumSeaGreen;">
         
@@ -60,6 +62,12 @@ getDescaR aid = do
                <tr>
                 <th><h2>Acompanhamento: <h2>#{acompanhamentoNome acompanhamento}
                 <th><h2>Preço: <h2>R$ #{acompanhamentoPreco acompanhamento}
+
+          <br><form action=@{CompraAcompR aid} method=post>
+               ^{widget}
+               <input type="submit" value="Adicionar ao Carrinho">
+             
+       
     |]
 
 -- select * from Acompanhamento order by preco desc
@@ -88,7 +96,8 @@ getListaaR = do
                 
                   $forall Entity aid acompanhamento <- acompanhamentos
                 
-                    <td><h3> #{acompanhamentoNome acompanhamento}</td>
+                    <td><h3> <a href=@{DescaR aid}>
+                             #{acompanhamentoNome acompanhamento}</a></td>
                         
                     <td><h3> R$ #{acompanhamentoPreco acompanhamento}</td>
                             
