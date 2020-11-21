@@ -3,19 +3,31 @@
 /favicon.ico FaviconR GET
 /robots.txt RobotsR GET
 
-/                                           HomeR             GET 
-/sorvete                                    SorveteR          GET POST
-/sorvete/#SorveteId/desc                    DescsR            GET
-/sorvetes                                   ListasR           GET
-/sorvete/#SorveteId/modificar               UpdSorvR          GET POST
-/sorvete/#SorveteId/del                     DelSorvR          POST
-/calda                                      CaldaR            GET POST
-/calda/#CaldaId/desc                        DesccR            GET
-/caldas                                     ListacR           GET
-/calda/#CaldaId/modificar                   UpdCaldR          GET POST
-/calda/#CaldaId/del                         DelCaldR          POST
-/acompanhamento                             AcompanhamentoR   GET POST
-/acompanhamento/#AcompanhamentoId/desc      DescaR            GET
-/acompanhamentos                            ListaaR           GET
-/acompanhamento/#AcompanhamentoId/modificar UpdAcompR         GET POST
-/acompanhamento/#AcompanhamentoId/del       DelAcompR         POST
+/                                               HomeR             GET 
+/sorvete                                        SorveteR          GET POST
+/sorvete/#SorveteId/desc                        DescsR            GET
+/sorvetes                                       ListasR           GET
+/sorvete/#SorveteId/modificar                   UpdSorvR          GET POST
+/sorvete/#SorveteId/del                         DelSorvR          POST
+/calda                                          CaldaR            GET POST
+/calda/#CaldaId/desc                            DesccR            GET
+/caldas                                         ListacR           GET
+/calda/#CaldaId/modificar                       UpdCaldR          GET POST
+/calda/#CaldaId/del                             DelCaldR          POST
+/acompanhamento                                 AcompanhamentoR   GET POST
+/acompanhamento/#AcompanhamentoId/desc          DescaR            GET
+/acompanhamentos                                ListaaR           GET
+/acompanhamento/#AcompanhamentoId/modificar     UpdAcompR         GET POST
+/acompanhamento/#AcompanhamentoId/del           DelAcompR         POST
+/usuario                                        UsuarioR          GET POST
+/entrar                                         EntrarR           GET POST
+/sair                                           SairR             POST
+/admin                                          AdminR            GET
+/comprar/listadesorvetes                        ListCompraSorvR   GET
+/comprar1/listadecaldas                         ListCompraCaldR   GET
+/comprar2/listadeacompanhamentos                ListCompraAcompR  GET
+/comprar3/#SorveteId/efetuar                    CompraSorvR       POST
+/comprar4/#CaldaId/efetuar                      CompraCaldR       POST
+/comprar5/#AcompanhamentoId/efetuar             CompraAcompR      POST
+
+
