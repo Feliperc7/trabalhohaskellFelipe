@@ -7,6 +7,7 @@
 module Handler.Calda where
 
 import Import
+import Tool
 
 formCalda :: Maybe Calda -> Form Calda
 formCalda mp = renderDivs $ Calda
@@ -45,6 +46,7 @@ postCaldaR = do
 getDesccR :: CaldaId -> Handler Html
 getDesccR cid = do
     calda <- runDB $ get404 cid
+    (widget,_) <- generateFormPost formPote
     defaultLayout [whamlet|
         <body style="background-color:Turquoise;">
 
@@ -60,6 +62,11 @@ getDesccR cid = do
                <tr>
                 <th><h2>Calda: <h2>#{caldaNome calda}
                 <th><h2>Preço: <h2>R$ #{caldaPreco calda}
+
+                <br><form action=@{CompraCaldR cid} method=post>
+                ^{widget}
+                    <input type="submit" value="Adicionar ao Carrinho">
+           
         
     |]
 
@@ -87,8 +94,9 @@ getListacR = do
             <tbody style="background-color: white">
                 
                   $forall Entity cid calda <- caldas
-                
-                    <td><h3> #{caldaNome calda}</td>
+                             
+                    <td><h3> <a href=@{DesccR cid}> 
+                             #{caldaNome calda}</a></td>
                         
                     <td><h3> R$ #{caldaPreco calda}</td>
                             
