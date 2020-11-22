@@ -46,7 +46,7 @@ postAcompanhamentoR = do
 getDescaR :: AcompanhamentoId -> Handler Html
 getDescaR aid = do
     acompanhamento <- runDB $ get404 aid
-    (widget,_) <- generateFormPost formPote
+    (widget,_) <- generateFormPost formQt
     defaultLayout [whamlet|
           <body style="background-color:MediumSeaGreen;">
         
