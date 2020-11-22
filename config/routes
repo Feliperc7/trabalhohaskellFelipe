@@ -23,11 +23,11 @@
 /entrar                                         EntrarR           GET POST
 /sair                                           SairR             POST
 /admin                                          AdminR            GET
-/comprar/listadesorvetes                        ListCompraSorvR   GET
-/comprar1/listadecaldas                         ListCompraCaldR   GET
-/comprar2/listadeacompanhamentos                ListCompraAcompR  GET
-/comprar3/#SorveteId/efetuar                    CompraSorvR       POST
-/comprar4/#CaldaId/efetuar                      CompraCaldR       POST
-/comprar5/#AcompanhamentoId/efetuar             CompraAcompR      POST
+/carrinho/listadesorvetes                       ListCompraSorvR   GET
+/carrinho/listadecaldas                         ListCompraCaldR   GET
+/carrinho/listadeacompanhamentos                ListCompraAcompR  GET
+/comprar1/#SorveteId/efetuar                    CompraSorvR       POST
+/comprar2/#CaldaId/efetuar                      CompraCaldR       POST
+/comprar3/#AcompanhamentoId/efetuar             CompraAcompR      POST
 
 
