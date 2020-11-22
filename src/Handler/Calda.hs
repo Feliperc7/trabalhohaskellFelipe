@@ -46,7 +46,7 @@ postCaldaR = do
 getDesccR :: CaldaId -> Handler Html
 getDesccR cid = do
     calda <- runDB $ get404 cid
-    (widget,_) <- generateFormPost formPote
+    (widget,_) <- generateFormPost formQt
     defaultLayout [whamlet|
         <body style="background-color:Turquoise;">
 
