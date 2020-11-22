@@ -4,7 +4,7 @@
 {-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE QuasiQuotes #-}
-module Handler.CompraAcomp where
+module Handler.Compraacomp where
 
 import Import
 import Tool
@@ -21,25 +21,33 @@ getListCompraAcompR = do
                  Nothing -> redirect HomeR
                  Just (Entity uid usuario) -> do
                      let sql = "SELECT ??,??,??FROM usuario \
-                        \ INNER JOIN compraAcomp on compraAcomp.usuarioid = usuario.id \
-                        \ INNER JOIN acompanhamento ON compraAcomp.acompanhamentoid = acompanhamento.id \
+                        \ INNER JOIN compraacomp on compraacomp.usuarioid = usuario.id \
+                        \ INNER JOIN acompanhamento ON compraacomp.acompanhamentoid = acompanhamento.id \
                         \ WHERE usuario.id = ?"
-                     acompanhamentos <- runDB $ rawSql sql [toPersistValue uid] :: Handler [(Entity Usuario,Entity CompraAcomp,Entity Acompanhamento)]
+                     acompanhamentos <- runDB $ rawSql sql [toPersistValue uid] :: Handler [(Entity Usuario,Entity Compraacomp,Entity Acompanhamento)]
                      defaultLayout $ do
                         [whamlet|
-                            <body style="background-color:LimeGreen;">
-                            <h1>
-                                 <center>ACOMPANHAMENTOS COMPRADOS POR #{usuarioNome usuario}</center>
-                            <ul>
-                                 $forall (Entity _ _, Entity _ compraAcomp, Entity _ acompanhamento) <- acompanhamentos
-                                 
-                                    <center>#{acompanhamentoNome acompanhamento}: #{acompanhamentoPreco acompanhamento *                                              (fromIntegral (compraAcompPote compraAcomp))}</center>
+                          <body style="background-color:PaleGoldenrod;">
+                          <center><caption> <h1> ACOMPANHAMENTOS COMPRADOS POR #{usuarioNome usuario}</caption><center><br>
+                          <center><table width="60%" style="background-color:black; border:2px solid;text-align:center">
+
+                                <thead style="color: white">
+                                   <th><h2>Acompanhamento</th>
+                                   <th><h2>Preço Total</th>
+
+                                <tbody style="background-color: white">
+                            
+                                 $forall (Entity _ _, Entity _ compraacomp, Entity _ acompanhamento) <- acompanhamentos
+                                  <td> #{acompanhamentoNome acompanhamento}</td>
+                                  <td> R$ #{acompanhamentoPreco acompanhamento * (fromIntegral (compraacompPote                                             compraacomp))}</td><tr>
+                                  
+
                         |] 
 
 
 postCompraAcompR :: AcompanhamentoId -> Handler Html
 postCompraAcompR aid = do
-    ((resp,_),_) <- runFormPost formPote
+    ((resp,_),_) <- runFormPost formQt
     case resp of
          FormSuccess pote -> do
              sess <- lookupSession "_EMAIL"
@@ -50,7 +58,9 @@ postCompraAcompR aid = do
                       case usuario of
                            Nothing -> redirect HomeR
                            Just (Entity uid _) -> do
-                               runDB $ insert (CompraAcomp uid aid pote)
+                               runDB $ insert (Compraacomp uid aid pote)
                                redirect ListCompraAcompR
          _ -> redirect HomeR
+
+
 
