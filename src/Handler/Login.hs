@@ -69,6 +69,7 @@ postSairR = do
 getAdminR :: Handler Html
 getAdminR =
     defaultLayout [whamlet|
-        <center><h1 style="color:red;font-weight:bold">BEM-VINDO ADMIN!!!</h1></center>
+        <body style="background-color:BurlyWood;">
+        <center><h1 style="color:green;font-weight:bold">BEM-VINDO ADMIN!!!</h1></center>
           
     |]
