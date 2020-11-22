@@ -46,7 +46,7 @@ postSorveteR = do
 getDescsR :: SorveteId -> Handler Html
 getDescsR sid = do
     sorvete <- runDB $ get404 sid
-    (widget,_) <- generateFormPost formPote
+    (widget,_) <- generateFormPost formQt
     defaultLayout [whamlet|
           <body style="background-color:DarkSalmon;">
 
@@ -127,7 +127,7 @@ postUpdSorvR sid = do
 -- delete from sorvete where id = sid
 postDelSorvR :: SorveteId -> Handler Html
 postDelSorvR sid = do
-    runDB $ delete sid 
+    runDB $ deleteCascade sid
     redirect ListasR
 
 
