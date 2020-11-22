@@ -4,7 +4,7 @@
 {-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE QuasiQuotes #-}
-module Handler.CompraCald where
+module Handler.Compracald where
 
 import Import
 import Tool
@@ -21,24 +21,31 @@ getListCompraCaldR = do
                  Nothing -> redirect HomeR
                  Just (Entity uid usuario) -> do
                      let sql="SELECT ??,??,??FROM usuario \
-                        \ INNER JOIN compraCald on compraCald.usuarioid = usuario.id \
-                        \ INNER JOIN calda ON compraCald.caldaid = calda.id \
+                        \ INNER JOIN compracald on compracald.usuarioid = usuario.id \
+                        \ INNER JOIN calda ON compracald.caldaid = calda.id \
                         \ WHERE usuario.id = ?"
-                     caldas <- runDB $ rawSql sql [toPersistValue uid] :: Handler [(Entity Usuario,Entity CompraCald,Entity Calda)]
+                     caldas <- runDB $ rawSql sql [toPersistValue uid] :: Handler [(Entity Usuario,Entity Compracald,Entity Calda)]
                      defaultLayout $ do
                         [whamlet|
-                            <body style="background-color:steelblue;">
-                            <h1>
-                                 <center>CALDAS COMPRADAS POR #{usuarioNome usuario}</center>
-                            <ul>
-                                 $forall (Entity _ _, Entity _ compraCald, Entity _ calda) <- caldas
-                                 
-                                     <center>#{caldaNome calda}: #{caldaPreco calda * (fromIntegral (compraCaldPote                                              compraCald))}</center>
+                                 <body style="background-color:LightCyan;">
+                             <center><caption> <h1> CALDAS COMPRADAS POR #{usuarioNome usuario}</caption><center><br>
+                          <center><table width="60%" style="background-color:black; border:2px solid;text-align:center">
+
+                                   <thead style="color: white">
+                                       <th><h3>Calda</th>
+                                       <th><h3>Preço Total</th>
+
+                                   <tbody style="background-color: white">
+
+                                     $forall (Entity _ _, Entity _ compracald, Entity _ calda) <- caldas
+                                       <td> #{caldaNome calda}</td>
+                                       <td> R$ #{caldaPreco calda * (fromIntegral (compracaldPote compracald))}</td><tr>
+                                      
                         |]
 
 postCompraCaldR :: CaldaId -> Handler Html
 postCompraCaldR cid = do
-    ((resp,_),_) <- runFormPost formPote
+    ((resp,_),_) <- runFormPost formQt
     case resp of
          FormSuccess pote -> do
              sess <- lookupSession "_EMAIL"
@@ -49,7 +56,6 @@ postCompraCaldR cid = do
                       case usuario of
                            Nothing -> redirect HomeR
                            Just (Entity uid _) -> do
-                               runDB $ insert (CompraCald uid cid pote)
+                               runDB $ insert (Compracald uid cid pote)
                                redirect ListCompraCaldR
          _ -> redirect HomeR
-
