@@ -13,21 +13,20 @@ Acompanhamento
     preco Double 
     deriving Show
 
-CompraSorv
+Comprasorv
     usuarioid UsuarioId
     sorveteid SorveteId
     pote      Int
-    deriving Show
 
-CompraCald
+Compracald
     usuarioid UsuarioId
     caldaid   CaldaId
-    pote      Int
+    pote    Int
 
-CompraAcomp
+Compraacomp
     usuarioid        UsuarioId
     acompanhamentoid AcompanhamentoId
-    pote             Int
+    pote     Int
 
 Usuario
     nome  Text
