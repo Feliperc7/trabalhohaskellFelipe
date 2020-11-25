@@ -32,8 +32,8 @@ getListCompraAcompR = do
                           <center><table width="60%" style="background-color:black; border:2px solid;text-align:center">
 
                                 <thead style="color: white">
-                                   <th><h2>Acompanhamento</th>
-                                   <th><h2>Preço Total</th>
+                                   <th><h3>Acompanhamento</th>
+                                   <th><h3>Preço Total</th>
 
                                 <tbody style="background-color: white">
                             
