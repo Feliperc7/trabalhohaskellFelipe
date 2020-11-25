@@ -51,10 +51,10 @@ getDesccR cid = do
         <body style="background-color:Turquoise;">
 
         <br><a href=@{HomeR}> 
-        <input type="button" value="VOLTAR PARA A PÁGINA INICIAL" style="color:black;font-weight:bold">
+        <input type="submit" value="VOLTAR PARA A PÁGINA INICIAL" style="color:black;font-weight:bold">
 
         <br><a href=@{CaldaR}> 
-        <input type="button" value="CADASTRAR OUTRA CALDA" style="color:black;font-weight:bold"></a><br>
+        <input type="submit" value="CADASTRAR OUTRA CALDA" style="color:black;font-weight:bold"></a><br>
 
         <center><caption> <h1> CALDA CADASTRADA! </caption></center>
           
@@ -78,10 +78,10 @@ getListacR = do
         <body style="background-color:aquamarine;">
      
         <br><a href=@{HomeR}> 
-        <input type="button" value="VOLTAR PARA A PÁGINA INICIAL" style="color:black;font-weight:bold">
+        <input type="submit" value="VOLTAR PARA A PÁGINA INICIAL" style="color:black;font-weight:bold">
 
         <br><a href=@{CaldaR}> 
-        <input type="button" value="CADASTRAR OUTRA CALDA" style="color:black;font-weight:bold"></a><br>
+        <input type="submit" value="CADASTRAR OUTRA CALDA" style="color:black;font-weight:bold"></a><br>
 
         <center><table width="70%" style="background-color:maroon; border:2px solid;text-align:center">
        
@@ -127,7 +127,7 @@ postUpdCaldR cid = do
 -- delete from calda where id = cid
 postDelCaldR :: CaldaId -> Handler Html
 postDelCaldR cid = do
-    runDB $ delete cid 
+    runDB $ deleteCascade cid 
     redirect ListacR
 
 
