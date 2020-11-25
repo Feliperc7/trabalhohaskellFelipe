@@ -51,10 +51,10 @@ getDescaR aid = do
           <body style="background-color:MediumSeaGreen;">
         
           <br><a href=@{HomeR}> 
-          <input type="button" value="VOLTAR PARA A PÁGINA INICIAL" style="color:black;font-weight:bold">
+          <input type="submit" value="VOLTAR PARA A PÁGINA INICIAL" style="color:black;font-weight:bold">
 
           <br><a href=@{AcompanhamentoR}> 
-          <input type="button" value="CADASTRAR OUTRO ACOMPANHAMENTO" style="color:black;font-weight:bold"></a><br>
+          <input type="submit" value="CADASTRAR OUTRO ACOMPANHAMENTO" style="color:black;font-weight:bold"></a><br>
 
           <center><caption> <h1> ACOMPANHAMENTO CADASTRADO! </caption></center>
         
@@ -79,10 +79,10 @@ getListaaR = do
         <body style="background-color:lightgreen;">
 
         <br><a href=@{HomeR}> 
-        <input type="button" value="VOLTAR PARA A PÁGINA INICIAL" style="color:black;font-weight:bold">
+        <input type="submit" value="VOLTAR PARA A PÁGINA INICIAL" style="color:black;font-weight:bold">
 
         <br><a href=@{AcompanhamentoR}> 
-        <input type="button" value="CADASTRAR OUTRO ACOMPANHAMENTO" style="color:black;font-weight:bold"></a><br>
+        <input type="submit" value="CADASTRAR OUTRO ACOMPANHAMENTO" style="color:black;font-weight:bold"></a><br>
 
         <center><table width="70%" style="background-color:forestgreen; border:2px solid;text-align:center">
        
@@ -128,6 +128,6 @@ postUpdAcompR aid = do
 -- delete from acompanhamento where id = aid
 postDelAcompR :: AcompanhamentoId -> Handler Html
 postDelAcompR aid = do
-    runDB $ delete aid 
+    runDB $ deleteCascade aid 
     redirect ListaaR
 
