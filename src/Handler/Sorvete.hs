@@ -8,6 +8,9 @@ module Handler.Sorvete where
 
 import Import
 import Tool
+import Database.Persist.Sql
+import Handler.Comprasorv()
+import ClassyPrelude.Yesod()
 
 formSorvete :: Maybe Sorvete -> Form Sorvete
 formSorvete mp = renderDivs $ Sorvete
@@ -51,10 +54,10 @@ getDescsR sid = do
           <body style="background-color:DarkSalmon;">
 
           <br><a href="@{HomeR}"> 
-          <input type="button" value="VOLTAR PARA A PÁGINA INICIAL" style="color:black;font-weight:bold">
+          <input type="submit" value="VOLTAR PARA A PÁGINA INICIAL" style="color:black;font-weight:bold">
 
           <br><a href="@{SorveteR}"> 
-          <input type="button" value="CADASTRAR OUTRO SORVETE" style="color:black;font-weight:bold"></a><br>
+          <input type="submit" value="CADASTRAR OUTRO SORVETE" style="color:black;font-weight:bold"></a><br>
 
           <center><caption> <h1> SORVETE CADASTRADO! </caption></center>
 
@@ -77,10 +80,10 @@ getListasR = do
         <body style="background-color:palegoldenrod">
 
         <br><a href=@{SorveteR}> 
-        <input type="button" value="CADASTRAR OUTRO SORVETE" style="color:black;font-weight:bold"></a> 
+        <input type="submit" value="CADASTRAR OUTRO SORVETE" style="color:black;font-weight:bold"></a> 
            
         <br><a href=@{HomeR}> 
-        <input type="button" value="VOLTAR PARA A PÁGINA INICIAL" style="color:black;font-weight:bold"></a><br>
+        <input type="submit" value="VOLTAR PARA A PÁGINA INICIAL" style="color:black;font-weight:bold"></a><br>
   
         <center><table width="70%" style="background-color:black; border:2px solid;text-align:center">
        
@@ -95,13 +98,13 @@ getListasR = do
                   $forall Entity sid sorvete <- sorvetes
                 
                     <td><h3> <a href=@{DescsR sid}>
-                             #{sorveteNome sorvete}</td>
+                             #{sorveteNome sorvete}</a></td>
                         
                     <td><h3> R$ #{sorvetePreco sorvete}</td>
                             
                     <td><h3> <a href=@{UpdSorvR sid}> <input type="submit" value="Editar" style="color:blue"></a></td>
 
-                    <td><h3> <form action=@{DelSorvR sid} method=post> <input type="submit" value="Excluir"style="color:red"></td><tr>
+                    <td><h3> <form action=@{DelSorvR sid} method=post> <input type="submit"                                 value="Excluir"style="color:red"></a></td><tr>
 
                 <tr>
                 <br>
@@ -124,10 +127,11 @@ postUpdSorvR sid = do
              redirect ListasR
          _ -> redirect HomeR
 
--- delete from sorvete where id = sid
 postDelSorvR :: SorveteId -> Handler Html
 postDelSorvR sid = do
+    --let sql = "ALTER TABLE comprasorv DROP CONSTRAINT compra_sorv_sorveteid_fkey;"
+    --sorvetes <- runDB $ rawSql sql [toPersistValue sid] :: Handler [(Entity Comprasorv)]
     runDB $ deleteCascade sid
     redirect ListasR
-
+ 
 
