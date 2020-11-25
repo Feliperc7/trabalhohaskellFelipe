@@ -41,6 +41,8 @@ getListCompraSorvR = do
 
                                   <td> #{sorveteNome sorvete}</td>
                                   <td> R$ #{sorvetePreco sorvete * (fromIntegral (comprasorvPote comprasorv))}</td><tr>
+                                  <tr>
+
                                   
                         |]
 
@@ -60,4 +62,3 @@ postCompraSorvR sid = do
                                runDB $ insert (Comprasorv uid sid pote)
                                redirect ListCompraSorvR
          _ -> redirect HomeR
-
